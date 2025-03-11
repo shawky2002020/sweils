@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --small: 0.5rem;
+  --normal: 1rem;
+  --medium: 1.5rem;
+  --large: 2rem;
+  --xlarge: 2.5rem;
+  --xxlarge: 3rem;
+  --xxxlarge: 4rem;
+  --huge: 5rem;
+  --superhuge: 6rem;
+
+  --green-light: #c2e0d1;
+  --green-20: #70b895;
+  --green-40: #5cad85;
+  --green: #339967;
+  --green-60: #297a52;
+  --green-80: #1a4d34;
+
+  --beige-light: #f5f5dc;
+  --beige-soft: #e3d9c6;
+  --beige-warm: #d2b48c;
+  --beige-deep: #c1a37d;
+
+  --black-100: #000;
+  --black-80: #333;
+  --black-60: #666;
+  --black-40: #999;
+  --black-20: #ccc;
+}
+
+@font-face {
+  font-family: "LoraBold";
+  src: url("assets/fonts/lora/Lora-Bold.ttf") format("truetype"),
+    url("assets/fonts/lora/Lora-BoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora/Lora-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "v";
+  src: url("assets/fonts/ananda/AnandaBlackPersonalUseRegular-rg9Rx.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  overflow-x: hidden;
+  font-family: lora;
+}
+
+li {
+  list-style: none;
+}
+a {
+  all: unset;
+  cursor: pointer;
+}
