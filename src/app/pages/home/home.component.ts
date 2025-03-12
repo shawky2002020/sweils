@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class HomeComponent implements AfterViewInit {
   ngAfterViewInit(): void {
+    
     const t1 = gsap.timeline();
     gsap.set('.logo', {
       y: '50vh',
@@ -47,5 +48,25 @@ export class HomeComponent implements AfterViewInit {
       end: 'center bottom',
       onScrubComplete: () => gsap.from('.navbar', { opacity: 0 }),
     });
+
+    const ingredients = document.querySelectorAll('.ingredients');
+    ingredients.forEach((ing,i)=>{
+      gsap.from(ing,{
+        repeat:-1,
+        yoyo:true,
+        y:-5,
+        rotate:1,
+        duration:2,
+        ease:'power2.inOut'
+      })
+    })
+    gsap.from('.cook img',{
+      scrollTrigger:{
+        trigger:'.cook img',
+        scrub:1,
+        end:'200% center',
+      },
+      y:-900
+    })
   }
 }

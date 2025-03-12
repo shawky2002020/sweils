@@ -24,7 +24,8 @@
   --beige-light: #f5f5dc;
   --beige-soft: #e3d9c6;
   --beige-warm: #d2b48c;
-  --beige-deep: #c1a37d;
+  --beige-deep: #946e3e;
+  --beige-medium: #d28f3d;
 
   --black-100: #000;
   --black-80: #333;
@@ -56,6 +57,7 @@
 html {
   overflow-x: hidden;
   font-family: lora;
+  scroll-behavior: smooth;
 }
 
 li {
