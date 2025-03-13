@@ -19,8 +19,10 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@emailjs/browser": "^4.4.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "emailjs-com": "^3.2.0",
     "gsap": "^3.12.7",
+    "lodash.debounce": "^4.0.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

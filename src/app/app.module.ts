@@ -8,7 +8,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     MenuComponent,
     ContactComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,42 +12,65 @@ form {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.title{
+.title {
   text-align: center;
   width: 100%;
   font-size: var(--large);
-  background: linear-gradient(45deg,var(--green-60),var(--beige-medium));
+  background: linear-gradient(45deg, var(--green-60), var(--beige-medium));
   background-clip: text;
   color: transparent;
 }
-label{
+label {
   font-size: var(--medium);
   color: var(--green-80);
 }
-.form-group{
-width: 100%;
+.form-group {
+  width: 100%;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 10px;
   border: 2px solid #4a7c59; /* Green border */
   border-radius: 5px;
   font-size: 16px;
 }
+.btn{
+  width: 100%;
+}
 
-button {
-  background-color: #4a7c59; /* Green */
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #1d976c 0%,
+    #93f9b9 51%,
+    #1d976c 100%
+  );
+}
+.btn-grad {
+  margin: 10px auto;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
   color: white;
-  padding: 10px;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+}
+
+.btn-grad:not(:disabled):hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 button:disabled {
-  background-color: #ccc;
+  background: var(--green-20);
   cursor: not-allowed;
 }
 
@@ -59,4 +82,16 @@ button:disabled {
 .error {
   color: #d9534f;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 680px) {
+  .title{
+    font-size: var(--medium);
+  }
+  label{
+    font-size: var(--normal);
+  }
+  form{
+    gap: 1rem;
+  }
 }

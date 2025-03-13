@@ -19,6 +19,7 @@
   display: grid;
   grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: 1fr;
+  text-align: center;
 }
 ul{
   display: flex;
@@ -35,7 +36,7 @@ ul{
 
 
 .logo li{
-  width: 100%;
+  min-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,5 +54,43 @@ ul{
   object-position: top;
 }
 
+/* Extra small devices (phones, 320px and up) */
+
+
+/* Small devices (phones, 480px and up) */
+@media only screen and (max-width: 680px) {
+  /* Your styles here */
+  .nav-items{
+    grid-template-columns: 7fr 4fr 2fr;
+  }
+  .navbar{
+    font-size: var(--small);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (max-width: 900px) {
+  /* Your styles here */
+}
+
+/* Large devices (laptops/desktops, 1024px and up) */
+@media only screen and (min-width: 1024px) {
+  /* Your styles here */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* Your styles here */
+}
+
+/* Extra extra large devices (4K screens, 1600px and up) */
+@media only screen and (min-width: 1600px) {
+  /* Your styles here */
+}
+
+/* Ultra large devices (TV screens, 1920px and up) */
+@media only screen and (min-width: 1920px) {
+  /* Your styles here */
+}
 
 
