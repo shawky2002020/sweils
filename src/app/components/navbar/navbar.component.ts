@@ -1,5 +1,8 @@
+import { ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, Renderer2, ElementRef } from '@angular/core';
 import gsap from 'gsap';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -12,16 +15,43 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   private debounceTimeout: any;
   private scrollThreshold = 10; // Small threshold to prevent flickering
   private firstSectionHeight: number = 0; // Height of the first section
+  private targetSection: string | null = null;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private viewportScroller: ViewportScroller,
+    private router: Router
+  ) {
+    // Listen to route changes
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.targetSection) {
+          this.scrollToSection(this.targetSection);
+          this.targetSection = null; // Reset after scrolling
+        }
+      });
+  }
+
+  /**
+   * Scroll to a section with smooth behavior
+   */
+  scrollToSection(section: string): void {
+    const currentRoute = this.router.url;
+    if (currentRoute !== '/home') {
+      this.targetSection = section; // Store section for later scroll after navigation
+      this.router.navigate(['/home']);
+    } else {
+      this.viewportScroller.scrollToAnchor(section);
+    }
+  }
 
   ngAfterViewInit(): void {
-    // Get the height of the first section
     const firstSection = document.querySelector('.head');
     if (firstSection) {
       this.firstSectionHeight = firstSection.clientHeight;
     }
-   
 
     this.setupScrollListener();
   }
@@ -58,7 +88,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
     this.debounceTimeout = setTimeout(() => {
       this.handleScroll();
-    }, 100); // Adjust the debounce delay (in milliseconds) as needed
+    }, 100); // Adjust debounce delay
   }
 
   /**
@@ -67,18 +97,14 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   private handleScroll(): void {
     const currentScrollPos = window.scrollY;
 
-    // Only activate hide/show behavior after scrolling past the first section
     if (currentScrollPos > this.firstSectionHeight) {
       if (this.prevScrollPos + this.scrollThreshold < currentScrollPos) {
-        // Scrolling down - Hide navbar
-        this.hideNavbar();
+        this.hideNavbar(); // Scrolling down
       } else if (this.prevScrollPos - this.scrollThreshold > currentScrollPos) {
-        // Scrolling up - Show navbar
-        this.showNavbar();
+        this.showNavbar(); // Scrolling up
       }
-    }
-    else{
-      this.showNavbar()
+    } else {
+      this.showNavbar();
     }
 
     this.prevScrollPos = currentScrollPos;

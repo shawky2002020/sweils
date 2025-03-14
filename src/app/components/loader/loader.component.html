@@ -1,6 +1,7 @@
-<div class="loader" *ngIf="isLoading">
+<!-- loading.component.html -->
+<div *ngIf="!(pageLoaded$ | async)" class="loader">
   <div class="spinner"></div>
-  <!-- <p>Blending sweetness... </p> -->
+  <h2>Loading...</h2>
 </div>
 
-<router-outlet></router-outlet>
+<ng-content *ngIf="pageLoaded$ | async"></ng-content>

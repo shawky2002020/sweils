@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
@@ -24,7 +25,9 @@ import { LoaderComponent } from './components/loader/loader.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    RouterModule.forRoot([], { anchorScrolling: 'enabled' })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

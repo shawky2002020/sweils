@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageLoaderService } from '../../services/loading.service';
+import {  PageLoaderService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-loader',
@@ -7,19 +7,11 @@ import { ImageLoaderService } from '../../services/loading.service';
   styleUrls: ['./loader.component.css'],
 })
 export class LoaderComponent implements OnInit {
-  isLoading = true;
+  pageLoaded$ = this.pageLoaderService.pageLoaded$;
 
-  constructor(private imageLoaderService: ImageLoaderService) {}
+  constructor(private pageLoaderService: PageLoaderService) {}
 
   ngOnInit(): void {
-    // Check if all images are loaded
-    this.imageLoaderService.checkImagesLoaded();
-
-    // Subscribe to the image loading status
-    this.imageLoaderService.imagesLoaded$.subscribe((loaded) => {
-      if (loaded) {
-        this.isLoading = false; // Hide the loader
-      }
-    });
+    this.pageLoaderService.checkPageLoaded();
   }
 }

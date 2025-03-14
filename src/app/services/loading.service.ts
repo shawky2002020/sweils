@@ -4,9 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ImageLoaderService {
-  private imagesLoadedSubject = new BehaviorSubject<boolean>(false);
-  imagesLoaded$ = this.imagesLoadedSubject.asObservable();
+export class PageLoaderService {
+  private pageLoadedSubject = new BehaviorSubject<boolean>(false);
+  pageLoaded$ = this.pageLoadedSubject.asObservable();
 
   constructor() {}
 
@@ -14,20 +14,20 @@ export class ImageLoaderService {
    * Resets the state when navigating to a new page.
    */
   reset(): void {
-    this.imagesLoadedSubject.next(false);
+    this.pageLoadedSubject.next(false);
   }
 
   /**
-   * Checks if all images on the page are loaded.
+   * Checks if all images and CSS are fully loaded.
    */
-  checkImagesLoaded(): void {
+  checkPageLoaded(): void {
     const images = Array.from(document.querySelectorAll('img'));
     let loadedCount = 0;
 
     const handleLoad = () => {
       loadedCount++;
       if (loadedCount === images.length) {
-        this.imagesLoadedSubject.next(true);
+        this.checkCSSLoaded();
       }
     };
 
@@ -42,7 +42,33 @@ export class ImageLoaderService {
 
     // If no images are found
     if (images.length === 0) {
-      this.imagesLoadedSubject.next(true);
+      this.checkCSSLoaded();
+    }
+  }
+
+  /**
+   * Ensures that CSS is fully loaded.
+   */
+  private checkCSSLoaded(): void {
+    const styleSheets = Array.from(document.styleSheets);
+    let loadedStyles = true;
+
+    try {
+      styleSheets.forEach((sheet) => {
+        if (sheet.cssRules) {
+          // Accessing cssRules will throw an error if the CSS hasn't fully loaded
+          const rules = sheet.cssRules;
+        }
+      });
+    } catch (e) {
+      loadedStyles = false;
+    }
+
+    if (loadedStyles) {
+      this.pageLoadedSubject.next(true);
+    } else {
+      // Retry after a short delay
+      setTimeout(() => this.checkCSSLoaded(), 50);
     }
   }
 }
