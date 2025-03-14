@@ -32,6 +32,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         scrollTrigger: {
           trigger: '.scroll-down',
           start: 'bottom center',
+          toggleActions: 'play reverse play reverse',
         },
         opacity: 0,
         duration: 1,
@@ -72,7 +73,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     // Section fade-in animations
-    const sections = document.querySelectorAll('section:not(.img, .sec1, head)');
+    const sections = document.querySelectorAll(
+      'section:not(.img, .sec1, head)'
+    );
     sections.forEach((sec, i) => {
       gsap.from(sec.children, {
         opacity: 0,
@@ -85,13 +88,22 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
 
     // Infinite floating effect for ingredients
-    (gsap.utils.toArray('.home .ingredients') as HTMLElement[]).forEach((ing: HTMLElement) => {
-      gsap.fromTo(
-        ing,
-        { y: -5, rotate: 1 },
-        { y: 5, rotate: -1, duration: 2, repeat: -1, yoyo: true, ease: 'power2.inOut' }
-      );
-    });
+    (gsap.utils.toArray('.home .ingredients') as HTMLElement[]).forEach(
+      (ing: HTMLElement) => {
+        gsap.fromTo(
+          ing,
+          { y: -5, rotate: 1 },
+          {
+            y: 5,
+            rotate: -1,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power2.inOut',
+          }
+        );
+      }
+    );
 
     // Image parallax effect
     const imgs = gsap.utils.toArray('.home .img img');
@@ -110,13 +122,16 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     const ingtwine = gsap.timeline({
       scrollTrigger: {
         trigger: 'svg',
-        markers: true,
       },
     });
 
     ingtwine
-      .from('svg', { opacity: 0.5, scale: 0, duration: 2, ease: 'power2.inOut' })
-      .from('.svg-container figcaption', { opacity: 0, y: -100, scale: 0, duration: 2 }, '>-1.5');
+      .from('svg', { opacity: 0.5, scale: 0, ease: 'power2.inOut' })
+      .from(
+        '.svg-container figcaption',
+        { opacity: 0, y: -100, scale: 0, duration: 2 },
+        '>-1.5'
+      );
 
     // Refresh ScrollTrigger after DOM update
     ScrollTrigger.refresh();
