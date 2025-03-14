@@ -503,7 +503,8 @@ span {
       font-size: var(--normal);
     }
     h1{
-      font-size: var(--xxxlarge);
+      padding: 1rem 0;
+      font-size: var(--xxlarge);
     }
   }
   .healthy{
