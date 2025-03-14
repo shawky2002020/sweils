@@ -100,8 +100,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             ing,
             { y: -5, rotate: 1 },
             {
-              y: 5,
-              rotate: -1,
+              y: 50,
               duration: 2,
               repeat: -1,
               yoyo: true,
@@ -130,13 +129,14 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         });
 
         ingtwine
-          .from('svg', { opacity: 0.5, scale: 0, ease: 'power2.inOut' })
+          .from('svg', { opacity: 0.5, scale: 0,duration:1.5, ease: 'power3.inOut' })
           .from('.svg-container figcaption', {
             opacity: 0,
             y: -100,
-            scale: 0,
-            duration: 2,
-          }, '>-1.5');
+            scale: .5,
+            duration: 4,
+            ease:'power3.inOut'
+          }, '>-2');
 
         // Refresh ScrollTrigger after all animations are set
         ScrollTrigger.refresh();
