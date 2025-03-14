@@ -1,6 +1,4 @@
 ![Logo](https://github.com/user-attachments/assets/3a8f53a1-9595-4f3d-af6f-eb2df9cb9af3)
- #Sweils - Sweet & Healthy  
-
 Sweils is a premier Egyptian brand that specializes in crafting healthy and delicious desserts using natural ingredients. We aim to strike the perfect balance between taste and wellness, allowing you to indulge guilt-free.  
 
 This project is the official website for Sweils, built using **Angular** to deliver a modern, responsive, and interactive user experience.  
@@ -67,8 +65,7 @@ The website is fully responsive and optimized for all screen sizes:
 
 ## 📞 Contact  
 - **Instagram:** [Sweils Kitchen](https://instagram.com/sweilskitchen)  
-- **WhatsApp:** +20 109 970 6165  
-- **Website:** [sweils.com](https://sweils.com/)  
+- **Website:** [sweils.com](https://sweils.vercel.app/)  
 
 ---
 
