@@ -308,7 +308,7 @@ svg{
   display: flex;
   flex-flow: row wrap;
   gap: 2rem;
-  width: 90%;
+  width: 100%;
   max-width: 25rem;
   padding: 1rem;
   border-radius: 1rem;
@@ -352,6 +352,8 @@ svg{
 
 }
 .about-us {
+  height: auto;
+  min-height: 100vh;
   background:linear-gradient(var(--beige-light) 20%,#ffaa005c 60%,var(--beige-light) 80%) ;
   background-size: cover;
   padding: 60px 20px;
@@ -374,7 +376,7 @@ svg{
 }
 
 .description, .vision {
-  padding: 0 2rem;
+  padding: 0 1rem;
   border-radius: 1rem;
   font-size: var(--medium);
   line-height: 1.6;
@@ -503,7 +505,6 @@ span {
       font-size: var(--normal);
     }
     h1{
-      padding: 1rem 0;
       font-size: var(--xxlarge);
     }
   }
