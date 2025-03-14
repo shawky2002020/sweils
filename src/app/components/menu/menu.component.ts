@@ -10,7 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class MenuComponent implements AfterViewInit, OnDestroy {
   isLoading = true;
-  @ViewChild('imagesWrapperEl') imagesWrapper!: ElementRef;
+  @ViewChild('imagesWrapperEl', { static: false }) imagesWrapper!: ElementRef;
   counter = 0;
   private images!: HTMLElement[];
   private bullets!: HTMLElement[];
@@ -29,7 +29,10 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
       .subscribe((loaded) => {
         if (loaded) {
           this.isLoading = false;
-          this.initGSAPAnimations();
+          // Small delay to ensure the DOM is fully loaded
+          setTimeout(() => {
+            this.initGSAPAnimations();
+          }, 0);
         }
       });
   }
@@ -43,6 +46,7 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
     if (this.images.length === 0 || this.bullets.length === 0) return;
 
     this.gsapContext = gsap.context(() => {
+      gsap.set(this.images, { opacity: 0 });
       gsap.set(this.images[0], { opacity: 1 });
       this.bullets[0].classList.add('active');
       this.startAutoSlide();
@@ -50,25 +54,29 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
   }
 
   private startAutoSlide(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
     this.intervalId = window.setInterval(() => {
       this.updateSlider();
     }, 4000);
   }
 
   updateSlider(): void {
-    gsap.to(this.images[this.counter], {
+    const currentIndex = this.counter;
+    const nextIndex = (this.counter + 1) % this.images.length;
+
+    gsap.to(this.images[currentIndex], {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
-        this.images[this.counter].classList.remove('show');
-        this.bullets[this.counter].classList.remove('active');
-
-        this.counter = (this.counter + 1) % this.images.length;
-
-        gsap.set(this.images[this.counter], { opacity: 1 });
-        this.bullets[this.counter].classList.add('active');
+        this.bullets[currentIndex].classList.remove('active');
+        gsap.set(this.images[nextIndex], { opacity: 1 });
+        this.bullets[nextIndex].classList.add('active');
       }
     });
+
+    this.counter = nextIndex;
   }
 
   ngOnDestroy(): void {
