@@ -63,12 +63,6 @@ The website is fully responsive and optimized for all screen sizes:
 
 ---
 
-## 📞 Contact  
-- **Instagram:** [Sweils Kitchen](https://instagram.com/sweilskitchen)  
-- **Website:** [sweils.com](https://sweils.vercel.app/)  
-
----
-
 ## 🚀 Getting Started  
 
 ### Prerequisites  
