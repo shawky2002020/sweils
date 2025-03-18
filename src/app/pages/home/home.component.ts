@@ -95,13 +95,14 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         });
 
         // Floating effect for ingredients
-        gsap.utils.toArray('.home .ingredients').forEach((ing: any) => {
+        gsap.utils.toArray('.home .ingredients').forEach((ing: any,i) => {
           gsap.fromTo(
             ing,
-            { y: -5, rotate: 1 },
+            { y: -10},
             {
               y: 50,
-              duration: 2,
+              duration: 3,
+              rotate:i==4? 0 :  40 ,
               repeat: -1,
               yoyo: true,
               ease: 'power2.inOut',
@@ -121,25 +122,30 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           });
         });
 
-        // SVG animation
         const ingtwine = gsap.timeline({
           scrollTrigger: {
-            trigger: 'svg',
-          },
+            trigger: '.svg-container',
+            start: 'top 80%', // Trigger earlier for a smoother effect
+            toggleActions: "play none none none",
+            markers: true
+          }
         });
-
+        
         ingtwine
-          .from('svg', { opacity: 0.5, scale: 0,duration:1.5, ease: 'power3.inOut' })
+          .from('svg', {
+            autoAlpha: 0, 
+            scale: 0.7,
+            duration: 2,
+            ease: "power2.out"
+          })
           .from('.svg-container figcaption', {
-            opacity: 0,
-            y: -100,
-            scale: .5,
-            duration: 4,
-            ease:'power3.inOut'
-          }, '>-2');
+            autoAlpha: 0,
+            y: -50,
+            scale: 0.9,
+            duration: 1.5, 
+            ease: "power2.out"
+          }, '-=0.5'); // Smooth transition instead of overlapping by -2
 
-        // Refresh ScrollTrigger after all animations are set
-        ScrollTrigger.refresh();
       });
     });
   }
