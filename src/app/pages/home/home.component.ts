@@ -127,7 +127,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             trigger: '.svg-container',
             start: 'top 80%', // Trigger earlier for a smoother effect
             toggleActions: "play none none none",
-            markers: true
+            
           }
         });
         
