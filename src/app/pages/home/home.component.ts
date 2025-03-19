@@ -102,7 +102,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             {
               y: 50,
               duration: 3,
-              rotate:i==4? 0 :  40 ,
+              rotate: i<4?  80 : i>4? -80 : 0  ,
               repeat: -1,
               yoyo: true,
               ease: 'power2.inOut',
