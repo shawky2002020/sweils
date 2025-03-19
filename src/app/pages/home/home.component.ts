@@ -126,6 +126,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
           scrollTrigger: {
             trigger: '.svg-container',
             start: 'top 80%', // Trigger earlier for a smoother effect
+            scrub:.4,
             toggleActions: "play none none none",
             
           }
@@ -144,7 +145,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             scale: 0.9,
             duration: 1.5, 
             ease: "power2.out"
-          }, '-=0.5'); // Smooth transition instead of overlapping by -2
+          }, '0'); // Smooth transition instead of overlapping by -2
 
       });
     });
