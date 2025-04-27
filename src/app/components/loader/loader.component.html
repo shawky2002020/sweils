@@ -1,7 +1,14 @@
 <!-- loading.component.html -->
-<div *ngIf="!(pageLoaded$ | async)" class="loader">
+<!-- <div *ngIf="!(pageLoaded$ | async)" class="loader">
   <div class="spinner"></div>
   <h2>Loading...</h2>
 </div>
 
-<ng-content *ngIf="pageLoaded$ | async"></ng-content>
+<ng-content *ngIf="pageLoaded$ | async"></ng-content> -->
+<!-- loading.component.html -->
+<div *ngIf="false" class="loader">
+  <div class="spinner"></div>
+  <h2>Loading...</h2>
+</div>
+
+<ng-content *ngIf="true"></ng-content>

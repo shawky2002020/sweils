@@ -22,8 +22,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    this.pageLoaderService.reset();
-    this.pageLoaderService.checkPageLoaded();
+    // this.pageLoaderService.reset();
+    // this.pageLoaderService.checkPageLoaded();
 
     this.pageLoadSubscription = this.pageLoaderService.pageLoaded$.subscribe(
       (loaded) => {
